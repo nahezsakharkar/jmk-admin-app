@@ -1,0 +1,9 @@
+
+GENERATE A DATA SEED USING :-
+npx sequelize-cli seed:generate --name seedname
+
+APPLY A SINGLE SEED DATA :-
+npx sequelize-cli db:seed --seed seedname.js
+
+SEED ALL DATA :-
+npx sequelize-cli db:seed:all

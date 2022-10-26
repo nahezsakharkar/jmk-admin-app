@@ -1,0 +1,45 @@
+.dashboard {
+  .widgets,
+  .charts {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .charts {
+    padding: 5px 20px;
+  }
+
+  .listContainer {
+    -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+    padding: 20px;
+    margin: 20px;
+
+    .listTitle {
+      font-weight: 500;
+      color: gray;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .viewAll {
+        text-decoration: none;
+        color: #6439ff;
+        font-size: 16px;
+        font-weight: 400;
+        border: 1px solid #6439ff;
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #6439ff;
+          color: white;
+        }
+      }
+    }
+  }
+}

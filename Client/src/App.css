@@ -1,0 +1,33 @@
+.homeContent {
+  display: flex;
+}
+
+aside {
+  flex: 1;
+  height: 89vh;
+  z-index: 100;
+}
+
+main {
+  height: 89vh;
+  overflow: hidden;
+  overflow-y: scroll;
+  flex: 6;
+}
+
+main::-webkit-scrollbar {
+  width: 12px;
+}
+
+main::-webkit-scrollbar-thumb {
+  background: #b5a9f0;
+  border-radius: 6px;
+}
+
+main::-webkit-scrollbar-thumb:hover {
+  background: #c5bdf4;
+}
+
+.MuiMenuItem-root {
+  font-family: "Century Gothic" !important;
+}

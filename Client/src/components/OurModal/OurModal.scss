@@ -1,0 +1,59 @@
+.modalDiv {
+  position: absolute;
+  background-color: white;
+  width: 450px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2.5rem;
+  outline: none;
+
+  .modalTitle {
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+
+  .modalDescription {
+    font-weight: 100;
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 0.7rem;
+
+    .button {
+      text-align: center;
+      width: 100px;
+      height: 25px;
+      text-decoration: none;
+      font-size: 1.3rem;
+      font-weight: 400;
+      padding: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &.positive {
+        color: green;
+        border: 1px solid green;
+
+        &:hover {
+          background-color: green;
+          color: white;
+        }
+      }
+
+      &.negative {
+        color: red;
+        border: 1px solid red;
+
+        &:hover {
+          background-color: red;
+          color: white;
+        }
+      }
+    }
+  }
+}

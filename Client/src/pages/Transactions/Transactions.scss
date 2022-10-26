@@ -1,0 +1,203 @@
+.cellAction {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  .add {
+    padding: 2px 5px;
+    border-radius: 5px;
+    color: green;
+    border: 1px dotted green;
+    cursor: pointer;
+
+    &:hover {
+      color: white;
+      background-color: green;
+    }
+  }
+
+  .viewButton {
+    padding: 2px 5px;
+    border-radius: 5px;
+    color: darkblue;
+    border: 1px dotted rgba(0, 0, 139, 0.596);
+    cursor: pointer;
+
+    &:hover {
+      color: white;
+      background-color: darkblue;
+    }
+  }
+
+  .deleteButton {
+    padding: 2px 5px;
+    border-radius: 5px;
+    color: crimson;
+    border: 1px dotted rgba(220, 20, 60, 0.6);
+    cursor: pointer;
+
+    &:hover {
+      color: white;
+      background-color: crimson;
+    }
+  }
+}
+
+hr {
+  margin: 1rem 3rem;
+  background-color: #a693ea;
+  outline: none;
+}
+
+.viewTransaction {
+  padding: 1.5rem;
+  flex: 1 1 auto;
+
+  .title {
+    width: 100%;
+    font-size: 24px;
+    color: gray;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .hide {
+      display: none;
+    }
+
+    .editValues {
+      text-decoration: none;
+      color: darkblue;
+      font-size: 18px;
+      font-weight: 400;
+      border: 1px solid darkblue;
+      padding: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: darkblue;
+        color: white;
+      }
+    }
+
+    .updateTransaction {
+      text-decoration: none;
+      color: green;
+      font-size: 18px;
+      font-weight: 400;
+      border: 1px solid green;
+      padding: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &.shake:hover {
+        animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+      }
+
+      @keyframes shake {
+        10%,
+        90% {
+          transform: translate3d(-1px, 0, 0);
+        }
+        20%,
+        80% {
+          transform: translate3d(2px, 0, 0);
+        }
+        30%,
+        50%,
+        70% {
+          transform: translate3d(-4px, 0, 0);
+        }
+        40%,
+        60% {
+          transform: translate3d(4px, 0, 0);
+        }
+      }
+
+      &:hover {
+        background-color: green;
+        color: white;
+      }
+    }
+  }
+
+  .created {
+    color: #474747;
+    font-size: 0.9rem;
+    align-self: end;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  .contentInformation {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-bottom: 2rem;
+
+    .info-div {
+      flex: 3 1 49%;
+
+      .heading {
+        text-align: center;
+        line-height: 1.5;
+        font-size: 0.8rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #8898aa !important;
+        margin-top: 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+      }
+
+      .info {
+        display: flex;
+        gap: 1rem;
+        padding-left: 1.5rem !important;
+        flex-direction: column;
+
+        .item {
+          display: flex;
+          border-radius: 9px;
+          padding: 1rem;
+          align-items: center;
+          // background-color: #f9f8ff;
+          // box-shadow: 2px 2px 2px 1px rgba(0, 0, 86, 0.2);
+
+          .capitalize {
+            .MuiInputBase-input {
+              text-transform: capitalize;
+            }
+          }
+      
+          .uppercase {
+            .MuiInputBase-input {
+              text-transform: uppercase;
+            }
+          }
+
+          .MuiFormControl-root {
+            width: 100%;
+          }
+
+          .MuiInputBase-input {
+            font-family: "Century Gothic";
+          }
+
+          .label {
+            width: 55%;
+            font-weight: 900;
+            color: #422d63;
+          }
+        }
+      }
+    }
+  }
+  .title-divider {
+    width: 42%;
+    margin-left: 0;
+    margin-bottom: 0.3rem;
+  }
+}
