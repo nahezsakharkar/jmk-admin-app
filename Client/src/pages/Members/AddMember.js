@@ -279,7 +279,7 @@ const AddMember = () => {
           title: "Success!",
           text: "New Member was Successfully Created!",
           icon: "success",
-          button: "Cool!",
+          button: "OK!",
         }).then(navigate('/Members'));
       })
       .catch((error) => {

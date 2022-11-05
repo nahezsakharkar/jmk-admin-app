@@ -140,7 +140,7 @@ const AddAdmins = () => {
           title: "Success!",
           text: "New Admin was Successfully Created!",
           icon: "success",
-          button: "Cool!",
+          button: "OK!",
         });
       })
       .catch((error) => {

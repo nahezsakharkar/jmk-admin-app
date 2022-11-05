@@ -105,7 +105,7 @@ const AddYear = () => {
           title: "Success!",
           text: "This Year was Successfully Created!",
           icon: "success",
-          button: "Cool!",
+          button: "OK!",
         });
       })
       .catch((error) => {

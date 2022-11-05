@@ -71,7 +71,7 @@ const Admins = () => {
           title: "Success!",
           text: "This Admin was Successfully Deleted!",
           icon: "success",
-          button: "Cool!",
+          button: "OK!",
         }).then(function () {
           window.location.reload(false)
         });

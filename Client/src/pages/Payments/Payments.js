@@ -142,7 +142,7 @@ const Payments = () => {
                     title: "Success!",
                     text: "This Pending Payment was Successfully Marked as Paid!",
                     icon: "success",
-                    button: "Cool!",
+                    button: "OK!",
                 });
             })
             .catch((error) => {
@@ -165,7 +165,7 @@ const Payments = () => {
                     title: "Success!",
                     text: "This Pending Payment was Successfully Deleted!",
                     icon: "success",
-                    button: "Cool!",
+                    button: "OK!",
                 }).then(function () {
                     window.location.reload(false)
                 });

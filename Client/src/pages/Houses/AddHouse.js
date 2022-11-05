@@ -106,7 +106,7 @@ const AddHouse = () => {
           title: "Success!",
           text: "New House was Successfully Created!",
           icon: "success",
-          button: "Cool!",
+          button: "OK!",
         });
       })
       .catch((error) => {

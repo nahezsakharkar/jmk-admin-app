@@ -120,7 +120,7 @@ const ViewYear = () => {
                     title: "Success!",
                     text: "New Information was Successfully Updated!",
                     icon: "success",
-                    button: "Cool!",
+                    button: "OK!",
                 });
             })
             .catch((error) => {

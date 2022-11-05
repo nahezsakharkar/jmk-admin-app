@@ -57,7 +57,7 @@ const Houses = () => {
                     title: "Success!",
                     text: "This House was Successfully Deleted!",
                     icon: "success",
-                    button: "Cool!",
+                    button: "OK!",
                 }).then(function () {
                     window.location.reload(false)
                 });

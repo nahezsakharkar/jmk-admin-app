@@ -209,7 +209,7 @@ const ViewMember = () => {
                     title: "Success!",
                     text: "New Information was Successfully Updated!",
                     icon: "success",
-                    button: "Cool!",
+                    button: "OK!",
                 });
             })
             .catch((error) => {
@@ -244,7 +244,7 @@ const ViewMember = () => {
                             title: "Success!",
                             text: "New Information was Successfully Updated!",
                             icon: "success",
-                            button: "Cool!",
+                            button: "OK!",
                         }).then(function () {
                             window.location.reload(false)
                         });
