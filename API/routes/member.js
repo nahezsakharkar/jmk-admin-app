@@ -140,4 +140,34 @@ router.post("/activate/:id", verifyTokenAndAdmin, async (req,res)=>{
     }
 })
 
+router.post('/sendcredentials/:id', verifyTokenAndAdmin, async (req, res) => {
+    try {
+        const member = await Member.findOne({ where: { "id": req.params.id,"isDeleted":false} });
+        let mailSent = await sendCredentialsEmail(member.email,{loginEmail:member.email,loginPassword:member.password});
+        console.log(mailSent);
+        res.status(200).json(mailSent);
+    } catch (err) {
+        res.status(500).json(err)
+    }
+});
+
+router.post('/resetpassword', verifyTokenAndAdmin, async (req, res) => {
+    try {
+        const email = req.body.email;
+        const newPassword = generateRandomPassword(8);
+        const updatePssword = await Member.update({password:newPassword},{ "where": { "email": email,"isDeleted":false} });
+        if(updatePssword[0] < 1){
+            res.status(500).json({msg:"failed to update password please verify email address of member"})
+        }else{
+            const member = await Member.findOne({ where: { "email": email,"isDeleted":false} });
+            let mailSent = await sendCredentialsEmail(member.email,{loginEmail:member.email,loginPassword:member.password});
+            console.log(mailSent);
+            res.status(200).json(member);   
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err)
+    }
+});
+
 module.exports = router;

@@ -409,3 +409,9 @@ const ViewMember = () => {
 }
 
 export default ViewMember;
+
+// Mangage Credentials
+
+// - send --- popup msg - ok cancel - ok
+// - reset --- popup --- this will rest password of the 'registered email user'
+// error opoup
