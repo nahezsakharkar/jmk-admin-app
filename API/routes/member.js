@@ -6,6 +6,7 @@ const { verifyTokenAndAdmin } = require("../middlewares/verifyToken");
 const { generateRandomFamilyId } = require("../utilities/utils");
 const { generatePayments } = require("../utilities/utils");
 const {sendCredentialsEmail} = require("../utilities/utils");
+const {generateRandomPassword} = require("../utilities/utils");
 
 
 
