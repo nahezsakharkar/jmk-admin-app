@@ -186,6 +186,7 @@ const ViewMember = () => {
     function handleUpdate() {
         var span1 = document.getElementById("editValues");
         var span2 = document.getElementById("updateMember");
+        const {head_of_family, ...others } = updateValues;
 
         if (!span2.classList.contains('hide')) {
             span2.className += " hide"
@@ -201,7 +202,7 @@ const ViewMember = () => {
                 'Content-Type': 'application/json',
                 token: `Bearer ${token}`
             },
-            body: JSON.stringify(updateValues),
+            body: JSON.stringify(others),
         }).then((response) => response.json())
             .then((data) => {
                 console.log('Success:', data);
