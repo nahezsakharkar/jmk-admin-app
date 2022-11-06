@@ -110,6 +110,12 @@ const AddYear = () => {
       })
       .catch((error) => {
         console.error('Error:', error);
+        swal({
+          title: "Error!",
+          text: "Failed to contact the Server! Create Year Failed!",
+          icon: "error",
+          button: "OK!",
+        });
       });
     navigate('/JMK')
     handleClose()

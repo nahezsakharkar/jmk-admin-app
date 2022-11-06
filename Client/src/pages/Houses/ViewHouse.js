@@ -169,6 +169,12 @@ const ViewHouse = () => {
             })
             .catch((error) => {
                 console.error('Error:', error);
+                swal({
+                    title: "Error!",
+                    text: "Failed to contact the Server! Update Failed!",
+                    icon: "error",
+                    button: "OK!",
+                });
             });
         const newHouseState = Object.assign(house, updateValues);
         navigate("/Houses/ViewHouse", { state: { house: newHouseState } })

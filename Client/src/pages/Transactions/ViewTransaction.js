@@ -168,6 +168,12 @@ const ViewTransaction = () => {
             })
             .catch((error) => {
                 console.error('Error:', error);
+                swal({
+                    title: "Error!",
+                    text: "Failed to contact the Server! Update Failed!",
+                    icon: "error",
+                    button: "OK!",
+                });
             });
         const newTransactionState = Object.assign(transaction, updateValues);
         navigate("/Transactions/ViewTransaction", { state: { transaction: newTransactionState } })

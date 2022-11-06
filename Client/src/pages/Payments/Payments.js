@@ -172,6 +172,14 @@ const Payments = () => {
             })
             .catch((error) => {
                 console.error('Error:', error);
+                swal({
+                    title: "Error!",
+                    text: "Failed to contact the Server! Delete Failed!",
+                    icon: "error",
+                    button: "OK!",
+                }).then(function () {
+                    window.location.reload(false)
+                });
             });
     }
 

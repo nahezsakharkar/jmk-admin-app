@@ -125,6 +125,12 @@ const ViewYear = () => {
             })
             .catch((error) => {
                 console.error('Error:', error);
+                swal({
+                    title: "Error!",
+                    text: "Failed to contact the Server! Update Failed!",
+                    icon: "error",
+                    button: "OK!",
+                });
             });
         updateValues.amount = commasMoney(updateValues.amount)
         const newYearState = Object.assign(jmkYear, updateValues);

@@ -49,21 +49,29 @@ const Families = () => {
                 token: `Bearer ${token}`
             }
         }).then((response) => response.json())
-        .then((data) => {
-          console.log('Success:', data);
-          swal({
-            title: "Success!",
-            text: "This Family was Successfully Deleted!",
-            icon: "success",
-            button: "OK!",
-          }).then(function () {
-            window.location.reload(false)
-          });
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
-      handleClose()
+            .then((data) => {
+                console.log('Success:', data);
+                swal({
+                    title: "Success!",
+                    text: "This Family was Successfully Deleted!",
+                    icon: "success",
+                    button: "OK!",
+                }).then(function () {
+                    window.location.reload(false)
+                });
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                swal({
+                    title: "Error!",
+                    text: "Failed to contact the Server! Delete Failed!",
+                    icon: "error",
+                    button: "OK!",
+                }).then(function () {
+                    window.location.reload(false)
+                });
+            });
+        handleClose()
     }
 
     const columns = [

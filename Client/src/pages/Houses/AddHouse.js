@@ -111,6 +111,12 @@ const AddHouse = () => {
       })
       .catch((error) => {
         console.error('Error:', error);
+        swal({
+          title: "Error!",
+          text: "Failed to contact the Server! Create House Failed!",
+          icon: "error",
+          button: "OK!",
+        });
       });
     navigate('/Houses')
     handleClose()

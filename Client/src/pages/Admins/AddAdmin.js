@@ -145,6 +145,12 @@ const AddAdmins = () => {
       })
       .catch((error) => {
         console.error('Error:', error);
+        swal({
+          title: "Error!",
+          text: "Failed to contact the Server! Create Admin Failed!",
+          icon: "error",
+          button: "OK!",
+        });
       });
     navigate('/Admins')
     handleClose()

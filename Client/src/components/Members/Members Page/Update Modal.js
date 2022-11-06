@@ -103,6 +103,14 @@ const UpdateModal = (params) => {
                 })
                 .catch((error) => {
                     console.error('Error:', error);
+                    swal({
+                        title: "Error!",
+                        text: "Failed to contact the Server! Mark as Active Failed!",
+                        icon: "error",
+                        button: "OK!",
+                    }).then(function () {
+                        window.location.reload(false)
+                    });
                 });
         } else if (modalFunction === "Inactive") {
             fetch(baseURL + 'api/member/' + params.row.id, {
@@ -126,6 +134,14 @@ const UpdateModal = (params) => {
                 })
                 .catch((error) => {
                     console.error('Error:', error);
+                    swal({
+                        title: "Error!",
+                        text: "Failed to contact the Server! Mark as Inactive Failed!",
+                        icon: "error",
+                        button: "OK!",
+                    }).then(function () {
+                        window.location.reload(false)
+                    });
                 });
         }
         params.handleClose()

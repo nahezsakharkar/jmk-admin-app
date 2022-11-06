@@ -284,6 +284,12 @@ const AddMember = () => {
       })
       .catch((error) => {
         console.error('Error:', error);
+        swal({
+          title: "Error!",
+          text: "Failed to contact the Server! Create Member Failed!",
+          icon: "error",
+          button: "OK!",
+        });
       });
 
     handleClose()

@@ -186,7 +186,7 @@ const ViewMember = () => {
     function handleUpdate() {
         var span1 = document.getElementById("editValues");
         var span2 = document.getElementById("updateMember");
-        const {head_of_family, ...others } = updateValues;
+        const { head_of_family, ...others } = updateValues;
 
         if (!span2.classList.contains('hide')) {
             span2.className += " hide"
@@ -252,6 +252,14 @@ const ViewMember = () => {
                     })
                     .catch((error) => {
                         console.error('Error:', error);
+                        swal({
+                            title: "Error!",
+                            text: "Failed to contact the Server! Update Failed!",
+                            icon: "error",
+                            button: "OK!",
+                        }).then(function () {
+                            window.location.reload(false)
+                        });
                     });
             })
         navigate("/Members")

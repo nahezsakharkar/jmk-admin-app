@@ -149,7 +149,7 @@ const Account = () => {
                 console.error('Error:', error);
                 swal({
                     title: "Error!",
-                    text: "Update of New Information was Not Successfully!",
+                    text: "Failed to contact the Server! Update Failed!",
                     icon: "error",
                     button: "OK!",
                 }).then(function () {

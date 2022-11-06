@@ -179,6 +179,12 @@ const ViewAdmin = () => {
             })
             .catch((error) => {
                 console.error('Error:', error);
+                swal({
+                    title: "Error!",
+                    text: "Failed to contact the Server! Update Failed!",
+                    icon: "error",
+                    button: "OK!",
+                });
             });
         const newAdminState = Object.assign(admin, updateValues);
         navigate("/Admins/ViewAdmin", { state: { admin: newAdminState } })
