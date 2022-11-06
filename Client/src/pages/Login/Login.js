@@ -3,20 +3,20 @@ import { baseURL } from "../../helpers/URLs";
 import { VerifyAccessTokenForLogin } from "../../helpers/TokenExpiredLogin";
 
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import PersonIcon from '@mui/icons-material/Person';
 import HttpsIcon from '@mui/icons-material/Https';
+import swal from 'sweetalert';
 
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [user, setUser] = useState("")
     const [error1, setError1] = useState(false)
     const [error2, setError2] = useState(false)
     const navigate = useNavigate()
 
-    useEffect(() => {
+    function handleSubmit() {
         fetch(baseURL + 'api/auth/admin/login', {
             method: 'POST',
             headers: {
@@ -26,35 +26,36 @@ const Login = () => {
         })
             .then((response) => response.json())
             .then((data) => {
-                setUser(data)
                 console.log('Success:', data);
+                if (data === 'No User Found') {
+                    setError2(false)
+                    setError1(true)
+                }
+                else if (data === 'Wrong Credentials') {
+                    setError1(false)
+                    setError2(true)
+                }
+                else if (data === 'No User Found' || data === 'Wrong Credentials') {
+                    setError2(false)
+                    setError1(true)
+                }
+                else {
+                    setError1(false)
+                    setError2(false)
+                    localStorage.setItem("Admin Credentials", JSON.stringify(data))
+                    navigate('/Dashboard')
+                    window.location.reload(false)
+                }
             })
             .catch((error) => {
                 console.error('Error:', error);
+                swal({
+                    title: "Error!",
+                    text: "Failed to contact the Server! Login Failed!",
+                    icon: "error",
+                    button: "OK!",
+                })
             });
-    }, [email, password]);
-
-
-    function handleSubmit() {
-        if (user === 'No User Found') {
-            setError2(false)
-            setError1(true)
-        }
-        else if (user === 'Wrong Credentials') {
-            setError1(false)
-            setError2(true)
-        }
-        else if (user === 'No User Found' || user === 'Wrong Credentials') {
-            setError2(false)
-            setError1(true)
-        }
-        else {
-            setError1(false)
-            setError2(false)
-            localStorage.setItem("Admin Credentials", JSON.stringify(user))
-            navigate('/Dashboard')
-            window.location.reload(false)
-        }
     }
 
     VerifyAccessTokenForLogin();

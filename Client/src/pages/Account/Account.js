@@ -147,6 +147,15 @@ const Account = () => {
             })
             .catch((error) => {
                 console.error('Error:', error);
+                swal({
+                    title: "Error!",
+                    text: "Update of New Information was Not Successfully!",
+                    icon: "error",
+                    button: "OK!",
+                }).then(function () {
+                    localStorage.removeItem("Admin Credentials")
+                    navigate('/')
+                })
             });
         handleClose()
         // localStorage.removeItem("Admin Credentials")
