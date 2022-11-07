@@ -386,7 +386,8 @@
 
 .totalAmounts {
   margin: auto;
-  padding-top: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   width: 80%;
   display: flex;
   justify-content: space-between;
@@ -397,6 +398,7 @@
     border-radius: 8px;
     background-color: rgba(255, 0, 0, 0.05);
     color: crimson;
+    border: 1px solid crimson;
   }
 
   .totalAmountsPaid {
@@ -404,5 +406,6 @@
     border-radius: 8px;
     background-color: rgba(0, 128, 0, 0.05);
     color: green;
+    border: 1px solid green;
   }
 }

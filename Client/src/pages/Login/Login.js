@@ -1,20 +1,40 @@
 import "./Login.scss";
 import { baseURL } from "../../helpers/URLs";
-import { VerifyAccessTokenForLogin } from "../../helpers/TokenExpiredLogin";
 
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import { isExpired } from "react-jwt";
 import PersonIcon from '@mui/icons-material/Person';
 import HttpsIcon from '@mui/icons-material/Https';
 import swal from 'sweetalert';
 
 const Login = () => {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [formValues, setFormValues] = useState({ email: "", password: "" });
     const [error1, setError1] = useState(false)
     const [error2, setError2] = useState(false)
+    const Data = localStorage.getItem('Admin Credentials')
+    const existanceOfData = Data !== null
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if (existanceOfData) {
+            if (Data && Data !== 'undefined') {
+                const tokenExpired = isExpired(JSON.parse(Data).accessToken);
+                if (!tokenExpired) {
+                    navigate("/Dashboard")
+                } else {
+                    localStorage.removeItem("Admin Credentials");
+                }
+            } else {
+                localStorage.removeItem("Admin Credentials");
+            }
+        }
+    }, [Data, existanceOfData, navigate])
+
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setFormValues({ ...formValues, [id]: value });
+    };
 
     function handleSubmit() {
         fetch(baseURL + 'api/auth/admin/login', {
@@ -22,7 +42,7 @@ const Login = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify(formValues),
         })
             .then((response) => response.json())
             .then((data) => {
@@ -58,8 +78,6 @@ const Login = () => {
             });
     }
 
-    VerifyAccessTokenForLogin();
-
     return (
         <div className='login'>
             <div className='loginBlock'>
@@ -67,12 +85,12 @@ const Login = () => {
                     <img src={require('../../assets/logo.png')} alt="Jamatul Muslimeen Kolthare, Ratnagiri" />
                 </div>
                 <div className="field">
-                    <label htmlFor="login_email"><PersonIcon className="icon" /></label>
-                    <input id="login_email" autoComplete="new-password" onChange={(e) => setEmail(e.target.value)} type="email" name="email" className="form_input" placeholder="Email" required />
+                    <label htmlFor="email"><PersonIcon className="icon" /></label>
+                    <input id="email" autoComplete="new-password" onChange={handleChange} type="email" name="email" className="form_input" placeholder="Email" required />
                 </div>
                 <div className="field">
-                    <label htmlFor="login_password"><HttpsIcon className="icon" /></label>
-                    <input id="login_password" autoComplete="new-password" onChange={(e) => setPassword(e.target.value)} type="password" name="password" className="form_input" placeholder="Password" required />
+                    <label htmlFor="password"><HttpsIcon className="icon" /></label>
+                    <input id="password" autoComplete="new-password" onChange={handleChange} type="password" name="password" className="form_input" placeholder="Password" required />
                 </div>
                 <div className="field">
                     {error1 ? <span className="error">No User Found</span> : null}

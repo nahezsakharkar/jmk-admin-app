@@ -12,6 +12,8 @@ import TextField from '@mui/material/TextField';
 import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import AltRouteIcon from '@mui/icons-material/AltRoute';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox';
 import swal from 'sweetalert';
 
 const ViewMember = () => {
@@ -395,11 +397,15 @@ const ViewMember = () => {
                     </div>
                 </div>
             </div>
-            {member.head_of_family === "No" ? <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-                <Button onClick={handleOpenBranch} variant="contained" style={{ backgroundColor: "#2e115c" }} endIcon={<AltRouteIcon />}>
+            <div style={{ display: "flex", justifyContent: "center", gap: "2rem", width: "100%", margin: "1rem 0 2rem 0" }}>
+                {member.head_of_family === "No" ? <Button onClick={handleOpenBranch} variant="contained" style={{ backgroundColor: "#2e115c" }} endIcon={<AltRouteIcon />}>
                     Branch Family
-                </Button>
-            </div> : null}
+                </Button> : null}
+                <Button variant="outlined" style={{ color: "#2e115c", borderColor: "#2e115c" }} endIcon={<RestartAltIcon />}>Reset Credentials</Button>
+                <Button variant="outlined" style={{ color: "#2e115c", borderColor: "#2e115c" }} endIcon={<ForwardToInboxIcon />}>Send Credentials to Registered Email</Button>
+            </div>
+            <OurModal open={openBranch} setOpen={setOpenBranch} handleOpen={handleOpenBranch} handleClose={handleCloseBranch} handleYes={handleCreateFamily} title="Branch as New Family?" description="This Member will become Head of the New Family?" />
+            <hr className="divider" />
             <div className="totalAmounts">
                 <div className="totalAmountsPending">
                     Total Pending Amount : {commasMoney(totalPendingAmount)}
@@ -408,8 +414,6 @@ const ViewMember = () => {
                     Total Paid Amount : {commasMoney(totalPaidAmount)}
                 </div>
             </div>
-            <OurModal open={openBranch} setOpen={setOpenBranch} handleOpen={handleOpenBranch} handleClose={handleCloseBranch} handleYes={handleCreateFamily} title="Branch as New Family?" description="This Member will become Head of the New Family?" />
-            <hr className="divider" />
             <Transaction memberName={updateValues.name} memberPayments={memberPayments} />
             <Pending memberName={updateValues.name} memberPayments={memberPayments} />
         </div>

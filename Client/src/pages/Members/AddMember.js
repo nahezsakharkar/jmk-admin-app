@@ -258,8 +258,6 @@ const AddMember = () => {
       }
     }
 
-    // setCreateValues({ name: capitalize(values.name), email: values.email.toLowerCase(), head_of_family: values.head_of_family, active_status: values.active_status, active_from: values.active_from, inactivity_reason: values.inactivity_reason, contact: values.contact, password: values.password, family: { family_head: values.family_head, house_no: values.house_name } })
-
     return errors;
   };
 
