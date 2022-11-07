@@ -41,6 +41,12 @@ const ViewMember = () => {
     const [openBranch, setOpenBranch] = useState(false);
     const handleOpenBranch = () => setOpenBranch(true);
     const handleCloseBranch = () => setOpenBranch(false);
+    const [openReset, setOpenReset] = useState(false);
+    const handleOpenReset = () => setOpenReset(true);
+    const handleCloseReset = () => setOpenReset(false);
+    const [openSend, setOpenSend] = useState(false);
+    const handleOpenSend = () => setOpenSend(true);
+    const handleCloseSend = () => setOpenSend(false);
     const token = adminAuth.accessToken;
 
     useEffect(() => {
@@ -269,6 +275,72 @@ const ViewMember = () => {
         handleClose()
     }
 
+    function handleResetCredentials() {
+        const body = JSON.stringify({ email: member.email })
+        console.log(body)
+        fetch(baseURL + 'api/member/resetpassword', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                token: `Bearer ${token}`
+            },
+            body: JSON.stringify({ email: member.email })
+        }).then((response) => response.json())
+            .then((data) => {
+                console.log('Success:', data);
+                swal({
+                    title: "Success!",
+                    text: "The Password was Successfully Reset & Sent to the Member's Registered Email.",
+                    icon: "success",
+                    button: "OK!",
+                }).then(function () {
+                    window.location.reload(false)
+                });
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                swal({
+                    title: "Error!",
+                    text: "Failed to contact the Server! Reset Failed!",
+                    icon: "error",
+                    button: "OK!",
+                }).then(function () {
+                    window.location.reload(false)
+                });
+            });
+    }
+
+    function handleSendCredentials() {
+        fetch(baseURL + 'api/member/sendcredentials/' + member.id, {
+            method: 'POST',
+            headers: {
+                token: `Bearer ${token}`
+            }
+        }).then((response) => response.json())
+            .then((data) => {
+                console.log('Success:', data);
+                swal({
+                    title: "Success!",
+                    text: "The Password was Successfully Sent to the Member's Registered Email.",
+                    icon: "success",
+                    button: "OK!",
+                }).then(function () {
+                    window.location.reload(false)
+                });
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                swal({
+                    title: "Error!",
+                    text: "Failed to contact the Server! Request Failed!",
+                    icon: "error",
+                    button: "OK!",
+                }).then(function () {
+                    window.location.reload(false)
+                });
+            });
+    }
+
     return (
         <div className="viewMember">
             <div className="title">{updateValues.name}'s Details
@@ -401,10 +473,12 @@ const ViewMember = () => {
                 {member.head_of_family === "No" ? <Button onClick={handleOpenBranch} variant="contained" style={{ backgroundColor: "#2e115c" }} endIcon={<AltRouteIcon />}>
                     Branch Family
                 </Button> : null}
-                <Button variant="outlined" style={{ color: "#2e115c", borderColor: "#2e115c" }} endIcon={<RestartAltIcon />}>Reset Credentials</Button>
-                <Button variant="outlined" style={{ color: "#2e115c", borderColor: "#2e115c" }} endIcon={<ForwardToInboxIcon />}>Send Credentials to Registered Email</Button>
+                <Button onClick={handleOpenReset} variant="outlined" style={{ color: "#2e115c", borderColor: "#2e115c" }} endIcon={<RestartAltIcon />}>Reset Credentials</Button>
+                <Button onClick={handleOpenSend} variant="outlined" style={{ color: "#2e115c", borderColor: "#2e115c" }} endIcon={<ForwardToInboxIcon />}>Send Credentials to Registered Email</Button>
             </div>
             <OurModal open={openBranch} setOpen={setOpenBranch} handleOpen={handleOpenBranch} handleClose={handleCloseBranch} handleYes={handleCreateFamily} title="Branch as New Family?" description="This Member will become Head of the New Family?" />
+            <OurModal open={openReset} setOpen={setOpenReset} handleOpen={handleOpenReset} handleClose={handleCloseReset} handleYes={handleResetCredentials} title="Reset Credentials?" description="The Password of this Member will be Reset and sent to the Registered Email." />
+            <OurModal open={openSend} setOpen={setOpenSend} handleOpen={handleOpenSend} handleClose={handleCloseSend} handleYes={handleSendCredentials} title="Send Credentials to Registered Email?" description="The existing Password of this Member will be sent to The Person's Registered Email." />
             <hr className="divider" />
             <div className="totalAmounts">
                 <div className="totalAmountsPending">
